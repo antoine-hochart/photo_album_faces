@@ -5,6 +5,7 @@ from sklearn.decomposition import PCA
 ######################################################################
 
 class GDL():
+    """ Clustering through Graph Degree Linkage. """
     def __init__(self, n_neighbors=10, a=1, n_clusters=None, eps=None,
                  with_pca=True, random_state=0):
         self.n_neighbors = n_neighbors
@@ -87,6 +88,7 @@ class GDL():
         return stop
     
     def generate_labels(self):
+        """ create the list of labels corresponding to each face from the list of clusters. """
         n_labels = sum([len(cluster) for cluster in self.clusters])
         self.labels_ = np.empty(n_labels)
         for label, cluster in enumerate(self.clusters):
@@ -94,6 +96,8 @@ class GDL():
                 self.labels_[i] = label
 
     def predict(self, Y, alpha=1, return_affinity=False):
+        """ Returns the label of the cluster with the highest affinity
+        or -1 if this affinity is below some threshold. """
         if self.pca is not None:
             Y = self.pca.transform(Y)
         # cluster indicator vectors normalized with cluster cardinality
