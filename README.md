@@ -47,16 +47,21 @@ In the recognition step, the difficulty is to decide whether a person is an outl
     The principle is the following: starting with an initial set of clusters, two clusters
     are recursively merged together if their affinity is the highest, the latter being defined by
     
-    <img src="imgs/affinity1.png" width="200"/>
+    <p align="center">    
+        <img src="imgs/affinity1.png" width="200"/>
+    <p/>
     
     where
-
-    <img src="imgs/affinity2.png" width="350"/>
+    <p align="center">    
+        <img src="imgs/affinity2.png" width="350"/>
+    <p/>
 
     The inner and outter degrees are computed with the weights of a directed K-nearest neighbors
     graph by the following formulas:
     
-    <img src="imgs/degrees.png" width="400"/>
+    <p align="center">    
+        <img src="imgs/degrees.png" width="400"/>
+    <p/>
 
     When the desired number of clusters is reached, the agglomerative process stops.
     Alternatively, if the number of final clusters is not known, the process stops when
@@ -104,38 +109,56 @@ depending on its presence or not in the album, and computed the F1 score.
 When there are many different faces for each familiar, the optimal number of neighbors to use
 in the directed graph is around 40.
 
-<img src="imgs/optim_k_large.png" width="50%">
+<p align="center">
+    <img src="imgs/optim_k_large.png" width="66%">
+<p/>
 
 As for the minimum affinity level (eps), there is no clear optimal choice.
 A value between 0.0075 and 0.015 is a good compromise between the accuracy and
 the number of clusters found.
 
-<img src="imgs/optim_eps_1_large.png" width="49%">
-<img src="imgs/optim_eps_2_large.png" width="49%">
+<p align="center">
+    <img src="imgs/optim_eps_1_large.png" width="66%">
+<p/>
+
+<p align="center">
+    <img src="imgs/optim_eps_2_large.png" width="66%">
+<p/>
 
 Regarding the affinity threshold for the recognition module, we express it as a ratio (alpha)
 with respect to the minimum affinity level which is used in the clustering algorithm.
 Without surprise a value close to 1 gives the best results.
 
-<img src="imgs/optim_alpha_large.png" width="50%">
+<p align="center">
+    <img src="imgs/optim_alpha_large.png" width="66%">
+<p/>
 
 ### Parameter estimation for type-2 albums (40 familiars, 10 stangers, ~500-550 faces)
 
 When there are less faces for each familiar, the number of neighbors to use in the directed graph
 needs to be lowered to approximately 10.
 
-<img src="imgs/optim_k_small.png" width="50%">
+<p align="center">
+    <img src="imgs/optim_k_small.png" width="66%">
+<p/>
 
 As for the minimum affinity level (eps), the optimal choice is also very different from
 type-1 albums, with a good choice around 0.15.
 
-<img src="imgs/optim_eps_1_small.png" width="49%">
-<img src="imgs/optim_eps_2_small.png" width="49%">
+<p align="center">
+    <img src="imgs/optim_eps_1_small.png" width="66%">
+<p/>
+
+<p align="center">
+    <img src="imgs/optim_eps_2_small.png" width="66%">
+<p/>
 
 However, for the recognition affinity threshold (alpha), the result is consistant with
 the previous case, with a good choice around 1.
 
-<img src="imgs/optim_alpha_small.png" width="50%">
+<p align="center">
+    <img src="imgs/optim_alpha_small.png" width="66%">
+<p/>
 
 ### Conclusion
 
@@ -159,18 +182,23 @@ which even a human would probably make (hint: "happy Kristoff" came to bother he
 It is quite amazing to see that even with very different illumination conditions or poses,
 and with very few examples, the clustering is accurate.
 
-<img src="imgs/family_14.png">
+<p align="center">
+    <img src="imgs/family_14.png">
+<p/>
 
 I also tested the recognition module on me, with a photo of "happy Kristoff" and
 "focused Sitron" together, and a fake face from
 [thispersondoesnotexist.com](https://thispersondoesnotexist.com/).
 
-<img src="imgs/recog.gif">
+<p align="center">
+    <img src="imgs/recog.gif">
+<p/>
 
-## Want to try?
+## Try it yourself?
 
-To try on your own set of photos, you first need to set up a (virtual) python environment
-with the required packages. (Yes, you know how to do it, even with pytorch!)
+To experiment on your own set of photos, you first need to set up a (virtual) python environment
+with the required packages.
+(Yes, you know how to do it! Pay attention to pytorch installation however.)
 Then you need to clone the repo and create a folder
 `photo_album_faces/data/album` containing your photos.
 
@@ -183,7 +211,7 @@ In the `src` folder there are 3 scripts:
 If you want to reproduce the results of the parameter optimization section, the scripts are in
 `photo_album_faces/src/test`.
 You'll need to download in `photo_album_faces/data/lfw` the [LFW face database](http://vis-www.cs.umass.edu/lfw/)
-and the `lfw-names.txt` file.
+as well as the `lfw-names.txt` file, which you can find on the same page.
 
 One last remark: when instanciating the neural network models (mtcnn and facenet),
 their pretrained weights are automatically downloaded and stored in 
