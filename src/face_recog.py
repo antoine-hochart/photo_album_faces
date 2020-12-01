@@ -60,7 +60,7 @@ def recognize_faces(algo, strides=(1, 1), margin=0):
         if n_recog == 0 and boxes is not None:
             faces = mtcnn.extract(frame, boxes, save_path=None)
             embeddings = get_face_embedding(faces, device='cpu')
-            labels = algo.predict(embeddings, alpha=0.50)
+            labels = algo.predict(embeddings, alpha=0.75)
             label_boxes = boxes.copy()
         # draw boxes and labels
         if boxes is not None:
