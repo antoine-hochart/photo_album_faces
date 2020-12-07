@@ -164,7 +164,7 @@ the previous case, with a good choice around 1.
 
 The optimal number of neighbors to use in the graph and the minimum affinity level are
 very sensible to the dataset.
-Tuning these parameters in an unsupervised fashion remains a challenge.
+Tuning these parameters automatically remains a challenge.
 
 ## A personal example
 
@@ -176,11 +176,10 @@ an affinity level of 0.05.
 The clustering algorithm produces 14 clusters, 4 of which have only one face in it
 (identified as "Snowgies").
 Among these 4 faces, 3 should belong to an other cluster, but apart from that, there is only 1 error,
-which even a human would probably make (hint: "happy Kristoff" came to bother her sister
-"focused Sitron" again).
+which even a human would probably make (hint: the error is in "focused Sitron").
 
 It is quite amazing to see that even with very different illumination conditions or poses,
-and with very few examples, the clustering is accurate.
+and with a very low embedding dimension (32), the clustering is accurate.
 
 <p align="center">
     <img src="imgs/family_14.png">
